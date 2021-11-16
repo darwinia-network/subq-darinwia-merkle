@@ -117,7 +117,7 @@ network:
       ownPower: Power
       totalPower: Power
       others: Vec<IndividualExposure>
-    Fee: 
+    Fee:
       amount: Balance
     H128: '[u8; 16; H128]'
     IndividualExposure:
@@ -169,7 +169,7 @@ network:
       _enum:
         Eth: EcdsaSignature
         Tron: EcdsaSignature
-    OutboundLaneData: 
+    OutboundLaneData:
       oldestUnprunedNonce: MessageNonce
       latestGeneratedNonce: MessageNonce
       latestReceivedNonce: MessageNonce
@@ -309,7 +309,7 @@ network:
                     InvalidToken: null
                     Native: TokenInfo
                     Erc20: TokenInfo
-                TokenOption: 
+                TokenOption:
                   name: Vec<u8>
                   symbol: Vec<u8>
                   decimal: u8
