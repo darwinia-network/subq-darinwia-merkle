@@ -1,10 +1,10 @@
 specVersion: 0.0.1
 description: Indexing mmr nodes from substrate chains.
-repository: ''
+repository: 'https://github.com/HackFisher/subqlMmrNodes.git'
 schema: ./schema.graphql
 network:
   endpoint: wss://rpc.darwinia.network
-  dictionary: https://api.subquery.network/sq/subquery/dictionary-polkadot
+  # dictionary: https://api.subquery.network/sq/subquery/dictionary-polkadot
 dataSources:
   - name: main
     kind: substrate/Runtime
