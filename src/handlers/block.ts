@@ -59,7 +59,7 @@ export class BlockHandler {
     const record = new NodeEntity(block_position.toString());
 
     record.position = block_position;
-    record.hash = this.hash.substr(2);
+    record.hash = this.hash;
 
     await record.save();
 
@@ -95,7 +95,7 @@ export class BlockHandler {
       const record = new NodeEntity(pos.toString());
       
       record.position = pos;
-      record.hash = hash;
+      record.hash = '0x' + hash;
 
       return record.save();
     });
@@ -111,10 +111,10 @@ function merge(left: string, right: string): string {
   const res = new Tuple(
     registry,
     [Raw, Raw],
-    [new Raw(registry, hexToU8a("0x" + left)), new Raw(registry, hexToU8a("0x" + right))],
+    [new Raw(registry, hexToU8a(left)), new Raw(registry, hexToU8a(right))],
   );
 
-  return blake2AsHex(res.toU8a()).slice(2);
+  return blake2AsHex(res.toU8a());
 }
 
 function leaf_index_to_pos(index: number): number {
