@@ -10,18 +10,18 @@ export class BlockHandler {
   private block: SubstrateBlock;
 
   private readonly peaks: [number, string][] = [
-    [8388606, "fc94dd28d893d7628d0c7769d2cc0a51354944305cb522570f2bb67fb5b0d37b"],
-    [10485757, "3dea9908a10d8e9cc807f93f65d55b4c7bf84d41c4dc0b4e70215332aeda483e"],
-    [11010044, "084631199357bd0e8a6ca232c3f77e08cba4989581ded276c7187ee30e800dc6"],
-    [11141115, "584727545a62ab4133e665568eea135d9e608b9dddb66acf909df68da0337030"],
-    [11157498, "83d5b5e3e8bf0b8f3722405804bf1f1e9804d5c57e57f2ab16a9168754908707"],
-    [11165689, "4fd1ccf85ee702013d531ac16543c6248978a350101e44ac08faa4866243bd57"],
-    [11166712, "c1649e65ceccc480bdee0435e75d223b8e45dfac120ced18a04851fad7878737"],
-    [11167223, "ce839cc950d99e2b298565acff0a3a5439726b8af402cf423c9db3a18f89e401"],
-    [11167350, "95a6535b5b35a5b867c8abd4b8ec92019f28837ee1e4b797f32d00616d9c8f74"],
-    [11167381, "ef627d767d4a39452fd64f71969c7968e115131477f24a362d6a3f5fae847753"],
-    [11167388, "2b850ea017ae25191d373413a461aaeb51696cb1911244b15f7e83e43c17d30b"],
-    [11167389, "01b0dc52eb1af94663d7a3ecd1b11ddf2fca75381e0457ab9fa31800b171db68"],
+    [8388606,  "0xfc94dd28d893d7628d0c7769d2cc0a51354944305cb522570f2bb67fb5b0d37b"],
+    [10485757, "0x3dea9908a10d8e9cc807f93f65d55b4c7bf84d41c4dc0b4e70215332aeda483e"],
+    [11010044, "0x084631199357bd0e8a6ca232c3f77e08cba4989581ded276c7187ee30e800dc6"],
+    [11141115, "0x584727545a62ab4133e665568eea135d9e608b9dddb66acf909df68da0337030"],
+    [11157498, "0x83d5b5e3e8bf0b8f3722405804bf1f1e9804d5c57e57f2ab16a9168754908707"],
+    [11165689, "0x4fd1ccf85ee702013d531ac16543c6248978a350101e44ac08faa4866243bd57"],
+    [11166712, "0xc1649e65ceccc480bdee0435e75d223b8e45dfac120ced18a04851fad7878737"],
+    [11167223, "0xce839cc950d99e2b298565acff0a3a5439726b8af402cf423c9db3a18f89e401"],
+    [11167350, "0x95a6535b5b35a5b867c8abd4b8ec92019f28837ee1e4b797f32d00616d9c8f74"],
+    [11167381, "0xef627d767d4a39452fd64f71969c7968e115131477f24a362d6a3f5fae847753"],
+    [11167388, "0x2b850ea017ae25191d373413a461aaeb51696cb1911244b15f7e83e43c17d30b"],
+    [11167389, "0x01b0dc52eb1af94663d7a3ecd1b11ddf2fca75381e0457ab9fa31800b171db68"],
   ];
 
   private beginBlock = 5583701;
@@ -59,7 +59,7 @@ export class BlockHandler {
     const record = new NodeEntity(block_position.toString());
 
     record.position = block_position;
-    record.hash = this.hash.substr(2);
+    record.hash = this.hash;
 
     await record.save();
 
@@ -111,10 +111,10 @@ function merge(left: string, right: string): string {
   const res = new Tuple(
     registry,
     [Raw, Raw],
-    [new Raw(registry, hexToU8a("0x" + left)), new Raw(registry, hexToU8a("0x" + right))],
+    [new Raw(registry, hexToU8a(left)), new Raw(registry, hexToU8a(right))],
   );
 
-  return blake2AsHex(res.toU8a()).slice(2);
+  return blake2AsHex(res.toU8a());
 }
 
 function leaf_index_to_pos(index: number): number {
