@@ -72,23 +72,6 @@ network:
       proof: Vec<H128>
     EthereumAddress: H160
     EthereumBlockNumber: u64
-    EthereumHeader:
-      parentHash: H256
-      timestamp: u64
-      number: EthereumBlockNumber
-      author: EthereumAddress
-      transactionsRoot: H256
-      unclesHash: H256
-      extraData: Bytes
-      stateRoot: H256
-      receiptsRoot: H256
-      logBloom: Bloom
-      gasUsed: U256
-      gasLimit: U256
-      difficulty: U256
-      seal: Vec<Bytes>
-      baseFeePerGas: Option<U256>
-      blockHash: Option<H256>
     EthereumNetwork:
       _enum:
         Mainnet: 'Null'
@@ -293,79 +276,118 @@ network:
       usableBalance: Balance
     ValidatorPrefs: ValidatorPrefsWithBlocked
   typesBundle:
-      spec:
-        Darwinia:
-          types:
-            - minmax:
-                - 0
-                - 22
-              types:
-                Address: AccountId
-                LookupSource: AccountId
-            - minmax:
-                - 23
-                - 1119
-              types:
-                EthereumHeader:
-                  parentHash: H256
-                  timestamp: u64
-                  number: EthereumBlockNumber
-                  author: EthereumAddress
-                  transactionsRoot: H256
-                  unclesHash: H256
-                  extraData: Bytes
-                  stateRoot: H256
-                  receiptsRoot: H256
-                  logBloom: Bloom
-                  gasUsed: U256
-                  gasLimit: U256
-                  difficulty: U256
-                  seal: Vec<Bytes>
-                  hash: Option<H256>
-            - minmax:
-                - 1120
-                - 1150
-              types:
-                AccountData:
-                  feeFrozen: Balance
-                  free: Balance
-                  reserved: Balance
-                  freeKton: Balance
-                  reservedKton: Balance
-                  miscFrozen: Balance
-                BalanceInfo: '{}'
-                BalanceLock:
-                  id: LockIdentifier
-                  lockFor: LockFor
-                  reasons: Reasons
-                EcdsaMessage: H256
-                EthashProof:
-                  dagNodes: (H512, H512)
-                  proof: Vec<H128>
-                EthereumReceipt:
-                  gasUsed: U256
-                  logBloom: Bloom
-                  logs: Vec<LogEntry>
-                  outcome: TransactionOutcome
-                Order:
-                  lane: LaneId
-                  message: MessageNonce
-                  sent_time: BlockNumber
-                  confirm_time: BlockNumber
-                  assigned_relayers: Vec<PriorRelayer>
-                RelayAffirmationId:
-                  relayHeaderId: EthereumBlockNumber
-                  round: u32
-                  index: u32
-                RelayAuthorityT:
-                  accountId: AccountId
-                  signer: EthereumAddress
-                  stake: Balance
-                  term: BlockNumber
-                Term: BlockNumber
-                Unbonding:
-                  amount: Balance
-                  moment: BlockNumber
+    spec:
+      Darwinia:
+        types:
+          - minmax:
+              - 0
+              - 22
+            types:
+              Address: AccountId
+              LookupSource: AccountId
+          - minmax:
+              - 23
+              - 1119
+            types:
+              EthereumHeader:
+                parentHash: H256
+                timestamp: u64
+                number: EthereumBlockNumber
+                author: EthereumAddress
+                transactionsRoot: H256
+                unclesHash: H256
+                extraData: Bytes
+                stateRoot: H256
+                receiptsRoot: H256
+                logBloom: Bloom
+                gasUsed: U256
+                gasLimit: U256
+                difficulty: U256
+                seal: Vec<Bytes>
+                hash: Option<H256>
+          - minmax:
+              - 1120
+              - 1150
+            types:
+              EthereumHeader:
+                parentHash: H256
+                timestamp: u64
+                number: EthereumBlockNumber
+                author: EthereumAddress
+                transactionsRoot: H256
+                unclesHash: H256
+                extraData: Bytes
+                stateRoot: H256
+                receiptsRoot: H256
+                logBloom: Bloom
+                gasUsed: U256
+                gasLimit: U256
+                difficulty: U256
+                seal: Vec<Bytes>
+                baseFeePerGas: Option<U256>
+                blockHash: Option<H256>
+              AccountData:
+                feeFrozen: Balance
+                free: Balance
+                reserved: Balance
+                freeKton: Balance
+                reservedKton: Balance
+                miscFrozen: Balance
+              BalanceInfo: '{}'
+              BalanceLock:
+                id: LockIdentifier
+                lockFor: LockFor
+                reasons: Reasons
+              EcdsaMessage: H256
+              EthashProof:
+                dagNodes: (H512, H512)
+                proof: Vec<H128>
+              EthereumReceipt:
+                gasUsed: U256
+                logBloom: Bloom
+                logs: Vec<LogEntry>
+                outcome: TransactionOutcome
+              Order:
+                lane: LaneId
+                message: MessageNonce
+                sent_time: BlockNumber
+                confirm_time: BlockNumber
+                assigned_relayers: Vec<PriorRelayer>
+              RelayAffirmationId:
+                relayHeaderId: EthereumBlockNumber
+                round: u32
+                index: u32
+              RelayAuthorityT:
+                accountId: AccountId
+                signer: EthereumAddress
+                stake: Balance
+                term: BlockNumber
+              Term: BlockNumber
+              Unbonding:
+                amount: Balance
+                moment: BlockNumber
+          - minmax:
+              - 1151
+              - 10000
+            types:
+              EthereumHeader:
+                parentHash: H256
+                timestamp: u64
+                number: EthereumBlockNumber
+                author: EthereumAddress
+                transactionsRoot: H256
+                unclesHash: H256
+                extraData: Bytes
+                stateRoot: H256
+                receiptsRoot: H256
+                logBloom: Bloom
+                gasUsed: U256
+                gasLimit: U256
+                difficulty: U256
+                seal: Vec<Bytes>
+                baseFeePerGas: Option<U256>
+                blockHash: Option<H256>
+
 dataSources:
   - name: main
     kind: substrate/Runtime
