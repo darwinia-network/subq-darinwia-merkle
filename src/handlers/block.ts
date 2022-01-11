@@ -9,6 +9,7 @@ const registry = new TypeRegistry();
 export class BlockHandler {
   private block: SubstrateBlock;
 
+  // assert_eq!(get_peaks(leaf_index_to_mmr_size(10)), vec![8388606, 10485757, 11010044, 11141115, 11157498, 11165689, 11166712, 11167223, 11167350, 11167381, 11167388, 11167389]);
   private readonly peaks: [number, string][] = [
     [8388606,  "0xfc94dd28d893d7628d0c7769d2cc0a51354944305cb522570f2bb67fb5b0d37b"],
     [10485757, "0x3dea9908a10d8e9cc807f93f65d55b4c7bf84d41c4dc0b4e70215332aeda483e"],
@@ -24,6 +25,7 @@ export class BlockHandler {
     [11167389, "0x01b0dc52eb1af94663d7a3ecd1b11ddf2fca75381e0457ab9fa31800b171db68"],
   ];
 
+  // beginBlock should be last leaf_index + 1
   private beginBlock = 5583701;
 
   static async ensureNode(id: string): Promise<void> {
