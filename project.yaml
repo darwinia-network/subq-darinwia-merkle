@@ -1,19 +1,23 @@
-specVersion: 0.0.1
-description: Indexing mmr nodes from substrate chains.
+specVersion: 0.2.0
+name: darwinia-mmr
+version: 1.0.0
+description: 'Indexing mmr nodes from substrate chains.'
 repository: 'https://github.com/HackFisher/subqlMmrNodes.git'
-schema: ./schema.graphql
+
+schema:
+  file: ./schema.graphql
+
 network:
   genesisHash: '0x729cb8f2cf428adcf81fe69610edda32c5711b2ff17de747e8604a3587021db8'
   endpoint: wss://rpc.darwinia.network
   chaintypes:
     file: ./types.yaml
-  # dictionary: https://api.subquery.network/sq/subquery/dictionary-polkadot
 
 dataSources:
-  - name: main
-    kind: substrate/Runtime
+  - kind: substrate/Runtime
     startBlock: 4440000
     mapping:
+      file: ./dist/index.js
       handlers:
         - handler: handleBlock
           kind: substrate/BlockHandler
